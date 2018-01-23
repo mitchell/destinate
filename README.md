@@ -1,1 +1,5 @@
 # travel-app
+## Description
+A web app that is designed to help people who want to travel with more cetainty or users that simply want to discover more options within their own city. It works through using rudimentary machine learning to categories different restaurants, activities, sights, etc. in a given area to match it with what the user would want to do most based on their taste. It will also be able to generate an itenerary for indecisive vacationers. Lastly, it will show reviewers whos taste is most similar to the users when showing reviews for a location or restaurant.
+## Justification
+This project will be an opportunity to work on a viable, profitible product that we can continue developing after graduation. It utilizes everything we've learned thus far in computer science, and challenges us to delve deeper than the courses did (we're also considering using new languages to us such as GO). It's also a great opportunity to teach ourselves some artificial intelligence fundementals. Lastly, we'll be able to have a functioning version of this product by the end of the semester. 
