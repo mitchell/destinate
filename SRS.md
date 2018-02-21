@@ -23,9 +23,9 @@ The remainder of this document is structured as follows:
 
 ## 5.3 Performance Requirements
 * 5.3.1 Activities around the user
-  * 5.3.1.1 The app shall return activities around the users current location, this should take no longer than 20 seconds.
+  * 5.3.1.1 The app shall return activities around the users current location, this should take no longer than 5 seconds.
 * 5.3.2 Searching Activities
-  * 5.3.2.1 The app shall return activities based on the users search query, this should take no longer than 10 seconds.
+  * 5.3.2.1 The app shall return activities based on the users search query, this should take no longer than 5 seconds.
 ## 5.4 Environment Requirements
 * 5.4.1 Development Environment Requirements
   * 5.4.1.1 This Application's frontend will use javascript with the Meteor framework
