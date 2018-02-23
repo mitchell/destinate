@@ -1,4 +1,4 @@
-# Destinate (Working Title) software requirements
+# Destinate software requirements
 ## 5.1 Introduction
 This application is a multi(two)-tier application, consisting of a
 component-based native frontend application, for iOS, and a micro-service based
