@@ -1,0 +1,82 @@
+service: destinate-backend
+# frameworkVersion: "=X.X.X"
+provider:
+  name: aws
+  runtime: go1.x
+  profile: personal
+  stage: ${opt:stage, 'dev'}
+  region: us-west-1
+  deploymentBucket: destinate-deployment
+  vpc:
+    securityGroupIds:
+      - sg-c32487ba
+    subnetIds:
+      - subnet-6b563b0c
+      - subnet-ddcf7086
+#  iamRoleStatements:
+  environment:
+    DBHOST: destinate-backend-${opt:stage, 'dev'}.cmggb3cmze78.us-west-1.rds.amazonaws.com
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+functions:
+  migrate:
+    handler: bin/migrate
+  # NOTE: desinations entity
+  destinations-index:
+    handler: bin/destinations-index
+    events:
+      - http:
+          path: destinations
+          method: get
+  destinations-post:
+    handler: bin/destinations-post
+    events:
+      - http:
+          path: destinations
+          method: post
+  destinations-get:
+    handler: bin/destinations-get
+    events:
+      - http:
+          path: destinations/{id}
+          method: get
+          parameters:
+            paths:
+              id: true
+  destinations-put:
+    handler: bin/destinations-put
+    events:
+      - http:
+          path: destinations
+          method: put
+  destinations-delete:
+    handler: bin/destinations-delete
+    events:
+      - http:
+          path: destinations/{id}
+          method: delete
+          parameters:
+            paths:
+              id: true
+resources:
+  Resources:
+    deploymentBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        AccessControl: BucketOwnerFullControl
+        BucketName: destinate-deployment
+    destinateBackendDatabase:
+      Type: AWS::RDS::DBInstance
+      Properties:
+        AllocatedStorage: '20'
+        DBInstanceClass: db.t2.micro
+        DBName: destinate
+        DBInstanceIdentifier: destinate-backend-${opt:stage, 'dev'}
+        Engine: postgres
+        MasterUsername: destinate
+        MasterUserPassword: devPassword
+        VPCSecurityGroups:
+          - sg-c32487ba
