@@ -61,6 +61,80 @@ functions:
           parameters:
             paths:
               id: true
+  # NOTE: desinations entity
+  reviews-index:
+    handler: bin/reviews-index
+    events:
+      - http:
+          path: reviews
+          method: get
+  reviews-post:
+    handler: bin/reviews-post
+    events:
+      - http:
+          path: reviews
+          method: post
+  reviews-get:
+    handler: bin/reviews-get
+    events:
+      - http:
+          path: reviews/{id}
+          method: get
+          parameters:
+            paths:
+              id: true
+  reviews-put:
+    handler: bin/reviews-put
+    events:
+      - http:
+          path: reviews
+          method: put
+  reviews-delete:
+    handler: bin/reviews-delete
+    events:
+      - http:
+          path: reviews/{id}
+          method: delete
+          parameters:
+            paths:
+              id: true
+  # NOTE: desinations entity
+  users-index:
+    handler: bin/users-index
+    events:
+      - http:
+          path: users
+          method: get
+  users-post:
+    handler: bin/users-post
+    events:
+      - http:
+          path: users
+          method: post
+  users-get:
+    handler: bin/users-get
+    events:
+      - http:
+          path: users/{id}
+          method: get
+          parameters:
+            paths:
+              id: true
+  users-put:
+    handler: bin/users-put
+    events:
+      - http:
+          path: users
+          method: put
+  users-delete:
+    handler: bin/users-delete
+    events:
+      - http:
+          path: users/{id}
+          method: delete
+          parameters:
+            paths:
+              id: true
 resources:
   Resources:
     deploymentBucket:

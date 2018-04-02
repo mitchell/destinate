@@ -19,5 +19,6 @@ func connectDB() *gorm.DB {
 // Migrate is to be called from the migrate lambda function in order to migrate the DB
 func Migrate() {
 	db := connectDB()
-	db.AutoMigrate(&Destination{})
+	defer db.Close()
+	db.AutoMigrate(&Destination{}, &Review{}, &User{})
 }

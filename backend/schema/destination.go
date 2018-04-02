@@ -12,15 +12,16 @@ type Destination struct {
 	Name        string
 	Address     string
 	Description string
+	Reviews     []Review
 }
 
 // All finds all records of this entity type.
 func (d Destination) All() string {
-	var ds []Destination
 	db := connectDB()
+	var ds []Destination
 	defer db.Close()
 
-	db.Find(&ds)
+	db.Preload("Reviews.User").Find(&ds)
 	jsonba, _ := json.Marshal(ds)
 
 	return string(jsonba)
@@ -35,6 +36,7 @@ func (d *Destination) Create(jsons string) (string, error) {
 		return "", err
 	}
 	db.Create(d)
+	db.Preload("Reviews.User").First(d)
 	jsonba, _ := json.Marshal(d)
 
 	return string(jsonba), nil
@@ -49,7 +51,7 @@ func (d *Destination) Find(sid string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	db.First(d, uint(id))
+	db.Preload("Reviews.User").First(d, uint(id))
 	jsonba, _ := json.Marshal(d)
 
 	return string(jsonba), nil
@@ -68,6 +70,7 @@ func (d *Destination) Update(jsons string) (string, error) {
 		return "", err
 	}
 	db.Save(d)
+	db.Preload("Reviews.User").First(d)
 	jsonba, _ := json.Marshal(d)
 
 	return string(jsonba), nil
