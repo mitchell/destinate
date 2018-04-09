@@ -20,5 +20,5 @@ func connectDB() *gorm.DB {
 func Migrate() {
 	db := connectDB()
 	defer db.Close()
-	db.AutoMigrate(&Destination{}, &Review{}, &User{})
+	db.AutoMigrate(&Review{}, &User{})
 }

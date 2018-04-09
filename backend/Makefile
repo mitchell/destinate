@@ -11,10 +11,7 @@ migrate:
 destinations:
 	dep ensure
 	env GOOS=linux go build -ldflags="-s -w" -o bin/destinations-index functions/destinations/index/main.go
-	env GOOS=linux go build -ldflags="-s -w" -o bin/destinations-post functions/destinations/post/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/destinations-get functions/destinations/get/main.go
-	env GOOS=linux go build -ldflags="-s -w" -o bin/destinations-put functions/destinations/put/main.go
-	env GOOS=linux go build -ldflags="-s -w" -o bin/destinations-delete functions/destinations/delete/main.go
 
 reviews:
 	dep ensure
@@ -29,6 +26,7 @@ users:
 	env GOOS=linux go build -ldflags="-s -w" -o bin/users-index functions/users/index/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/users-post functions/users/post/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/users-get functions/users/get/main.go
+	env GOOS=linux go build -ldflags="-s -w" -o bin/users-destinations-get functions/users/destinations/get/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/users-put functions/users/put/main.go
 	env GOOS=linux go build -ldflags="-s -w" -o bin/users-delete functions/users/delete/main.go
 

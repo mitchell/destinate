@@ -1,5 +1,7 @@
 service: destinate-backend
 # frameworkVersion: "=X.X.X"
+plugins:
+  - serverless-sam
 provider:
   name: aws
   runtime: go1.x
@@ -12,7 +14,6 @@ provider:
       - sg-c32487ba
     subnetIds:
       - subnet-6b563b0c
-      - subnet-ddcf7086
 #  iamRoleStatements:
   environment:
     DBHOST: destinate-backend-${opt:stage, 'dev'}.cmggb3cmze78.us-west-1.rds.amazonaws.com
@@ -31,12 +32,6 @@ functions:
       - http:
           path: destinations
           method: get
-  destinations-post:
-    handler: bin/destinations-post
-    events:
-      - http:
-          path: destinations
-          method: post
   destinations-get:
     handler: bin/destinations-get
     events:
@@ -46,22 +41,7 @@ functions:
           parameters:
             paths:
               id: true
-  destinations-put:
-    handler: bin/destinations-put
-    events:
-      - http:
-          path: destinations
-          method: put
-  destinations-delete:
-    handler: bin/destinations-delete
-    events:
-      - http:
-          path: destinations/{id}
-          method: delete
-          parameters:
-            paths:
-              id: true
-  # NOTE: desinations entity
+  # NOTE: reviews entity
   reviews-index:
     handler: bin/reviews-index
     events:
@@ -135,6 +115,16 @@ functions:
           parameters:
             paths:
               id: true
+  users-desinations-get:
+    handler: bin/users-destinations-get
+    events:
+      - http:
+          path: users/{id}/like/{did}
+          method: get
+          parameters:
+            paths:
+              id: true
+              did: true
 resources:
   Resources:
     deploymentBucket:

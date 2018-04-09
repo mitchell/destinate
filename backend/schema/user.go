@@ -3,6 +3,7 @@ package schema
 import (
 	"encoding/json"
 	"github.com/jinzhu/gorm"
+	"github.com/lib/pq"
 	"strconv"
 )
 
@@ -14,6 +15,7 @@ type User struct {
 	Reviews     []Review
 	Location    string
 	Preferences string
+	Likes       pq.StringArray `gorm:"varchar(64)[]"`
 }
 
 // All finds all records of this entity type.
@@ -90,4 +92,22 @@ func (u *User) Destroy(sid string) error {
 	db.Delete(u)
 
 	return nil
+}
+
+// AddDestination adds a destination to the user specified by id and destination specified by did.
+func (u *User) AddDestination(sid string, did string) (string, error) {
+	db := connectDB()
+	defer db.Close()
+
+	id, err := strconv.ParseUint(sid, 10, 32)
+	if err != nil {
+		return "", err
+	}
+	db.First(u, uint(id))
+	u.Likes = append(u.Likes, did)
+	db.Save(u)
+	db.Preload("Reviews").First(u)
+	jsonba, _ := json.Marshal(u)
+
+	return string(jsonba), nil
 }

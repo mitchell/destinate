@@ -9,8 +9,7 @@ import (
 // Review is the definition of the Review model in the db and in the service
 type Review struct {
 	gorm.Model
-	Destination   Destination
-	DestinationID uint
+	DestinationID string
 	User          User
 	UserID        uint
 	Comment       string
