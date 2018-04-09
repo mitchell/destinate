@@ -12,22 +12,20 @@ During our 16 week development process, our team will continuously keep in touch
 
 | Function / Feature | Due Date |
 |---|---|
-|  Placeholder | Week  |
-|  Placeholder| Week  |
-|  Placeholder | Week  |
-|  Placeholder | Week  |
-|  Placeholder | Week  |
-|  Placeholder | Week  |
-|  Placeholder | Week  |
-|  Placeholder | Week  |
-|  Placeholder | Week  |
-|  Placeholder| Week |
-|  Placeholder | Week  |
-|  Placeholder | Week  |
-|  Placeholder | Week  |
-|  Placeholder | Week  |
-|  Placeholder | Week |
-|  Placeholder | Week  |
+|  Implement Destinations | Week 5 |
+|  Boilerplate for frontend| Week 7 |
+|  Integrate Google places API into backend | Week 8 |
+|  Integrate Google places API into backend | Week 9 |
+|  Swiping & Cards | Week 10 |
+|  Implement Liked List | Week 11 |
+|  Settings Page | Week 12|
+|  More UI Options | Week 13 |
+|  Display Pictures | Week 14|
+|  Implement New User Questions | Week 14 |
+|  Points system | Week 14 |
+|  Recommendation based off points | Week 15 |
+|  Polish UI + Make Aesthetically Pleasing | Week 15|
+|  Implement Basic Itinerary System | Week 16 |
 
 - 4.1.1 Project Deliverables
   - Alpha (3/28/2018) - The alpha version of Destinate will provide most of the functionality and a rough but useable UI.
@@ -74,23 +72,19 @@ Our team will be working on everything together.
 ## 4.4   Project Schedule
 
 - 4.4.1 PERT / GANTT Chart
-![gant](./images/BBB-Gant.png)
+![gant]
 
 - 4.4.2 Task / Resource Table
-
-| Project Deliverables | Members | Hardware | Software |
 |---|---|---|---|
-| Feature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature| Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature | Mitchell Simon & Arash Lari | Software here |
-| Feature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature| Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| AFeature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
-| Feature |  Mitchell Simon & Arash Lari | Macbook/Windows PC| Software here |
-| Feature | Mitchell Simon & Arash Lari | Macbook/Windows PC | Software here |
+| Implement Destinations | Mitchell Simon & Arash Lari | Macbook/Windows PC | GO, AWS |
+| Boilerplate for frontend | Mitchell Simon & Arash Lari | Macbook/Windows PC | Ionic Framework, Angular.js  |
+| Integrate Google places API into backend | Mitchell Simon & Arash Lari | Macbook/Windows PC | GO |
+| Swiping & Cards | Mitchell Simon & Arash Lari | Macbook/Windows PC | Ionic Framework, Angular.js |
+| Implement Liked List | Mitchell Simon & Arash Lari | Macbook/Windows PC | GO, Ionic Framework, Angular.js |
+| Settings Page| Mitchell Simon & Arash Lari | Macbook/Windows PC | Ionic Framework, Angular.js, GO |
+| UI Options | Mitchell Simon & Arash Lari | Macbook/Windows PC | Ionic Framework, Angular.js, GO |
+| Display Pictures | Mitchell Simon & Arash Lari | Macbook/Windows PC | Ionic Framework, Angular.js, GO |
+| Implement New User Questions | Mitchell Simon & Arash Lari | Macbook/Windows PC | Ionic Framework, Angular.js|
+| Points system | Mitchell Simon & Arash Lari | Macbook/Windows PC | GO |
+| Recommendation based off points | Mitchell Simon & Arash Lari | Macbook/Windows PC | Ionic Framework, Angular.js, GO |
+| Implement Basic Itinerary System | Mitchell Simon & Arash Lari | Macbook/Windows PC | Ionic Framework, Angular.js, GO|

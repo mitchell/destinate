@@ -9,67 +9,58 @@ import {
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
+import { connect } from 'react-redux';
+import { getDestinations } from '../services/destinations/actions.js';
+import { addFavorite } from '../services/favorites/actions.js';
 
+import DestinationCard from '../components/DestinationCard/DestinationCard';
+import LightButton from '../components/LightButton/LightButton';
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      destinationIndex: 0,
+    };
+  }
+
+  addDestination = () => {
+    this.props.addFavorite(this.props.destinations[this.state.destinationIndex]);
+    this.setState({ destinationIndex: this.state.destinationIndex + 1 });
+  }
+
+  skipDestination = () => {
+    this.setState({ destinationIndex: this.state.destinationIndex + 1 });
+  }
+
   static navigationOptions = {
     header: null,
   };
 
+  componentWillMount() {
+    this.props.getDestinations();
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-          {/*
-          <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
-              }
-              style={styles.welcomeImage}
-            />
-          </View>
-          */}
-
+    if (this.props.destinations[this.state.destinationIndex]) {
+      return (
+        <View style={styles.container}>
           <View style={styles.getStartedContainer}>
-            {/*
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-            */}
-
-            <Text style={styles.getStartedText}>
-              Hello, my dudes.
-            </Text>
+            <DestinationCard destination={this.props.destinations[this.state.destinationIndex]}/>
+            <LightButton value='LIKE' onPress={this.addDestination}/>
+            <LightButton value='DISLIKE' onPress={this.skipDestination}/>
           </View>
 
-          {/*
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
-          */}
-        </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>Welcome to Destinate, check out your other tabs:</Text>
-
-          {/*
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
+          <View style={styles.tabBarInfoContainer}>
+            <Text style={styles.tabBarInfoText}>Welcome to Destinate, check out your other tabs:</Text>
           </View>
-          */}
         </View>
-      </View>
-    );
+      );
+    }
+    return <View/>
+
   }
 
   _maybeRenderDevelopmentModeWarning() {
@@ -106,10 +97,25 @@ export default class HomeScreen extends React.Component {
   };
 }
 
+const mapStateToProps = state => ({
+  destinations: state.destinations,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getDestinations: () => { dispatch(getDestinations()); },
+  addFavorite: (favorite) => { dispatch(addFavorite(favorite)); },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: 30,
   },
   developmentModeText: {
     marginBottom: 20,
