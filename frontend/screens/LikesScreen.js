@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import { ExpoLikesView } from '@expo/samples';
 
 import DestinationCard from '../components/DestinationCard/DestinationCard';
 
-class LinksScreen extends React.Component {
+class LikesScreen extends React.Component {
   static navigationOptions = {
-    title: 'Links',
+    title: 'Likes',
   };
 
   render() {
@@ -38,4 +38,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   undefined,
-)(LinksScreen);
+)(LikesScreen);

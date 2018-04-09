@@ -48,8 +48,8 @@ class HomeScreen extends React.Component {
         <View style={styles.container}>
           <View style={styles.getStartedContainer}>
             <DestinationCard destination={this.props.destinations[this.state.destinationIndex]}/>
-            <LightButton value='LIKE' onPress={this.addDestination}/>
-            <LightButton value='DISLIKE' onPress={this.skipDestination}/>
+            <LightButton value='Interested' onPress={this.addDestination}/>
+            <LightButton value='Not Interested' onPress={this.skipDestination}/>
           </View>
 
 
@@ -66,7 +66,7 @@ class HomeScreen extends React.Component {
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
       const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
+        <Text onPress={this._handleLearnMorePress} style={styles.helpLikeText}>
           Learn more
         </Text>
       );
@@ -194,10 +194,10 @@ const styles = StyleSheet.create({
     marginTop: 15,
     alignItems: 'center',
   },
-  helpLink: {
+  helpLike: {
     paddingVertical: 15,
   },
-  helpLinkText: {
+  helpLikeText: {
     fontSize: 14,
     color: '#2e78b7',
   },

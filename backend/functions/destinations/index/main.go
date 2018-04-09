@@ -19,7 +19,7 @@ func handler(ctx context.Context) (events.APIGatewayProxyResponse, error) {
 	}
 
 	tsr := &maps.TextSearchRequest{
-		Query: "restaurants near lmu",
+		Query: "food near venice",
 	}
 
 	resp, err := c.TextSearch(ctx, tsr)
