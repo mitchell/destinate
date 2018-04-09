@@ -1,18 +1,31 @@
 package main
 
 import (
+	"context"
+	"encoding/json"
+	"log"
+
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/mitchelljfs/destinate/backend/schema"
+	"googlemaps.github.io/maps"
 )
 
-func handler() (events.APIGatewayProxyResponse, error) {
-	var d schema.Destination
+func handler(ctx context.Context) (events.APIGatewayProxyResponse, error) {
+	c, err := maps.NewClient(maps.WithAPIKey("AIzaSyCWhNQ3cPHw7qFiiRTucVd61W4ZSzeUyTI"))
+	log.Printf("c: %v", c)
+	if err != nil {
+		log.Fatalf("fatal error: %s", err)
+	}
 
-	response := d.All()
+	tsr := &maps.TextSearchRequest{
+		Query: "restaurant",
+	}
+	resp, err := c.TextSearch(ctx, tsr)
+	log.Printf("resp: %v", resp)
+	jsonba, err := json.Marshal(resp.Results)
 
 	return events.APIGatewayProxyResponse{
-		Body:       response,
+		Body:       string(jsonba),
 		StatusCode: 200,
 	}, nil
 }
