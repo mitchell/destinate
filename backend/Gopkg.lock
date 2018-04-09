@@ -37,9 +37,33 @@
   ]
   revision = "88edab0803230a3898347e77b474f8c1820a1f20"
 
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/net"
+  packages = [
+    "context",
+    "context/ctxhttp"
+  ]
+  revision = "61147c48b25b599e5b561d2e9c4f3e1ef489ca41"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/time"
+  packages = ["rate"]
+  revision = "26559e0f760e39c24d730d3224364aef164ee23f"
+
+[[projects]]
+  branch = "master"
+  name = "googlemaps.github.io/maps"
+  packages = [
+    ".",
+    "internal"
+  ]
+  revision = "45d833324080b376851477bc2479eea067d3167e"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "64889b7648e47d8503fdb51d62bb138c2f835c8d02716f93761267222836570b"
+  inputs-digest = "8cf2f0235251b080b18a440437d3ec3fd2476df575f510ab5ec46931ce911271"
   solver-name = "gps-cdcl"
   solver-version = 1
