@@ -1,7 +1,5 @@
 service: destinate-backend
 # frameworkVersion: "=X.X.X"
-plugins:
-  - serverless-sam
 provider:
   name: aws
   runtime: go1.x
