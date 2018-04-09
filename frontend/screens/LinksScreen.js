@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 
-export default class LinksScreen extends React.Component {
+import DestinationCard from '../components/DestinationCard/DestinationCard';
+
+class LinksScreen extends React.Component {
   static navigationOptions = {
     title: 'Links',
   };
@@ -10,9 +13,10 @@ export default class LinksScreen extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <ExpoLinksView />
+        {
+          this.props.favorites[0] &&
+          this.props.favorites.map((favorite) => { return <DestinationCard destination={favorite}/>; })
+        }
       </ScrollView>
     );
   }
@@ -20,8 +24,18 @@ export default class LinksScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 30,
     flex: 1,
     paddingTop: 15,
     backgroundColor: '#fff',
   },
 });
+
+const mapStateToProps = state => ({
+  favorites: state.favorites,
+});
+
+export default connect(
+  mapStateToProps,
+  undefined,
+)(LinksScreen);
