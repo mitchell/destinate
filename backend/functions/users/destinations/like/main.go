@@ -7,9 +7,9 @@ import (
 )
 
 func handler(r events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	var re schema.Review
+	var u schema.User
 
-	err := re.Destroy(r.PathParameters["id"])
+	response, err := u.AddDestination(r.PathParameters["id"], r.PathParameters["did"])
 	if err != nil {
 		return events.APIGatewayProxyResponse{
 			Body:       err.Error(),
@@ -18,6 +18,7 @@ func handler(r events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, e
 	}
 
 	return events.APIGatewayProxyResponse{
+		Body:       response,
 		StatusCode: 200,
 	}, nil
 }

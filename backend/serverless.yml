@@ -11,7 +11,7 @@ provider:
     securityGroupIds:
       - sg-c32487ba
     subnetIds:
-      - subnet-6b563b0c
+      - subnet-ddcf7086
 #  iamRoleStatements:
   environment:
     DBHOST: destinate-backend-${opt:stage, 'dev'}.cmggb3cmze78.us-west-1.rds.amazonaws.com
@@ -36,43 +36,6 @@ functions:
       - http:
           path: destinations/{id}
           method: get
-          parameters:
-            paths:
-              id: true
-  # NOTE: reviews entity
-  reviews-index:
-    handler: bin/reviews-index
-    events:
-      - http:
-          path: reviews
-          method: get
-  reviews-post:
-    handler: bin/reviews-post
-    events:
-      - http:
-          path: reviews
-          method: post
-  reviews-get:
-    handler: bin/reviews-get
-    events:
-      - http:
-          path: reviews/{id}
-          method: get
-          parameters:
-            paths:
-              id: true
-  reviews-put:
-    handler: bin/reviews-put
-    events:
-      - http:
-          path: reviews
-          method: put
-  reviews-delete:
-    handler: bin/reviews-delete
-    events:
-      - http:
-          path: reviews/{id}
-          method: delete
           parameters:
             paths:
               id: true
@@ -113,12 +76,22 @@ functions:
           parameters:
             paths:
               id: true
-  users-desinations-get:
-    handler: bin/users-destinations-get
+  users-desinations-put-like:
+    handler: bin/users-destinations-put-like
     events:
       - http:
           path: users/{id}/like/{did}
-          method: get
+          method: put
+          parameters:
+            paths:
+              id: true
+              did: true
+  users-desinations-put-dislike:
+    handler: bin/users-destinations-put-dislike
+    events:
+      - http:
+          path: users/{id}/dislike/{did}
+          method: put
           parameters:
             paths:
               id: true

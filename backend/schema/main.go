@@ -20,5 +20,11 @@ func connectDB() *gorm.DB {
 func Migrate() {
 	db := connectDB()
 	defer db.Close()
-	db.AutoMigrate(&Review{}, &User{})
+	db.AutoMigrate(&User{})
+}
+
+// CORSHeaders is used used to set the headers of each endpoint to allow CORS requests.
+var CORSHeaders = map[string]string{
+	"Access-Control-Allow-Origin":      "*",
+	"Access-Control-Allow-Credentials": "true",
 }

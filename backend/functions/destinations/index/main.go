@@ -6,43 +6,30 @@ import (
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
-	"googlemaps.github.io/maps"
+	"github.com/mitchelljfs/destinate/backend/schema"
 )
 
-func handler(ctx context.Context) (events.APIGatewayProxyResponse, error) {
-	c, err := maps.NewClient(maps.WithAPIKey("AIzaSyCWhNQ3cPHw7qFiiRTucVd61W4ZSzeUyTI"))
+func handler(ctx context.Context, r events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	var re events.APIGatewayProxyResponse
+	re.Headers = schema.CORSHeaders
+
+	resp, err := schema.AllDestinations(ctx, "activites near venice, ca")
 	if err != nil {
-		return events.APIGatewayProxyResponse{
-			Body:       err.Error(),
-			StatusCode: 400,
-		}, nil
+		re.Body = err.Error()
+		re.StatusCode = 400
+		return re, nil
 	}
 
-	tsr := &maps.TextSearchRequest{
-		Query: "food near venice",
-	}
-
-	resp, err := c.TextSearch(ctx, tsr)
+	jsonba, err := json.Marshal(resp)
 	if err != nil {
-		return events.APIGatewayProxyResponse{
-			Body:       err.Error(),
-			StatusCode: 400,
-		}, nil
+		re.Body = err.Error()
+		re.StatusCode = 400
+		return re, nil
 	}
 
-	// ppr := &maps.PlacePhotoRequest{
-	// 	PhotoReference: resp.Results[0].Photos[0].PhotoReference,
-	// }
-	// imgResp, err := c.PlacePhoto(ctx, ppr)
-	// img, err := &imgResp.Image()
-	// log.Printf("image: %v", img)
-
-	jsonba, err := json.Marshal(resp.Results)
-
-	return events.APIGatewayProxyResponse{
-		Body:       string(jsonba),
-		StatusCode: 200,
-	}, err
+	re.Body = string(jsonba)
+	re.StatusCode = 200
+	return re, nil
 }
 
 func main() {

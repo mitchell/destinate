@@ -3,6 +3,7 @@ package schema
 import (
 	"encoding/json"
 	"github.com/jinzhu/gorm"
+	"github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/lib/pq"
 	"strconv"
 )
@@ -10,12 +11,13 @@ import (
 // User is the definition of the User model in the db and in the service
 type User struct {
 	gorm.Model
-	Name        string
-	Password    string
-	Reviews     []Review
-	Location    string
-	Preferences string
-	Likes       pq.StringArray `gorm:"varchar(64)[]"`
+	Name     string
+	Password string
+	Location string
+	Radius   uint
+	Likes    pq.StringArray `gorm:"type:text[]"`
+	Dislikes pq.StringArray `gorm:"type:text[]"`
+	Scores   postgres.Jsonb
 }
 
 // All finds all records of this entity type.
@@ -24,7 +26,7 @@ func (u User) All() string {
 	db := connectDB()
 	defer db.Close()
 
-	db.Preload("Reviews").Find(&us)
+	db.Find(&us)
 	jsonba, _ := json.Marshal(us)
 
 	return string(jsonba)
@@ -39,7 +41,7 @@ func (u *User) Create(jsons string) (string, error) {
 		return "", err
 	}
 	db.Create(u)
-	db.Preload("Reviews").First(u)
+	db.First(u)
 	jsonba, _ := json.Marshal(u)
 
 	return string(jsonba), nil
@@ -54,7 +56,7 @@ func (u *User) Find(sid string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	db.Preload("Reviews").First(u, uint(id))
+	db.First(u, uint(id))
 	jsonba, _ := json.Marshal(u)
 
 	return string(jsonba), nil
@@ -73,7 +75,7 @@ func (u *User) Update(jsons string) (string, error) {
 		return "", err
 	}
 	db.Save(u)
-	db.Preload("Reviews").First(u)
+	db.First(u)
 	jsonba, _ := json.Marshal(u)
 
 	return string(jsonba), nil
@@ -106,7 +108,7 @@ func (u *User) AddDestination(sid string, did string) (string, error) {
 	db.First(u, uint(id))
 	u.Likes = append(u.Likes, did)
 	db.Save(u)
-	db.Preload("Reviews").First(u)
+	db.First(u)
 	jsonba, _ := json.Marshal(u)
 
 	return string(jsonba), nil
