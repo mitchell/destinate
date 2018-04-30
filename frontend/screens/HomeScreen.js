@@ -46,12 +46,13 @@ class HomeScreen extends React.Component {
     if (this.props.destinations[this.state.destinationIndex]) {
       return (
         <View style={styles.container}>
-          <View style={styles.getStartedContainer}>
+          <View style={styles.contentContainer}>
             <DestinationCard destination={this.props.destinations[this.state.destinationIndex]}/>
-            <LightButton value='Interested' onPress={this.addDestination}/>
-            <LightButton value='Not Interested' onPress={this.skipDestination}/>
           </View>
-
+          <View style={styles.buttonContainer}>
+            <LightButton value='Dislike' onPress={this.skipDestination}/>
+            <LightButton value='Like' onPress={this.addDestination}/>
+          </View>
 
           <View style={styles.tabBarInfoContainer}>
             <Text style={styles.tabBarInfoText}>Welcome to Destinate, check out your other tabs:</Text>
@@ -125,7 +126,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   contentContainer: {
-    paddingTop: 30,
+    marginHorizontal: 50,
+    marginTop: 10,
+    marginBottom: 20,
   },
   welcomeContainer: {
     alignItems: 'center',
@@ -139,11 +142,12 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginLeft: -10,
   },
-  getStartedContainer: {
-    alignItems: 'center',
+  buttonContainer: {
+    marginTop: 10,
     marginHorizontal: 50,
     marginTop: 10,
     marginBottom: 20,
+    flexDirection: 'row',
   },
   homeScreenFilename: {
     marginVertical: 7,

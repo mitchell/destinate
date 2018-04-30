@@ -4,7 +4,9 @@ export default StyleSheet.create({
   buttonContainer: {
     marginTop: 20,
     paddingVertical: 30,
-    width: 200,
+    width: '40%',
+    marginLeft: '5%',
+    marginRight: '5%',
     borderColor: '#DDDDDD',
     borderWidth: 0.5,
     borderRadius: 10,
