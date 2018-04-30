@@ -4,10 +4,11 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { ExpoLikesView } from '@expo/samples';
 
 import DestinationCard from '../components/DestinationCard/DestinationCard';
+import SettingsButton from '../components/SettingsButton/SettingsButton';
 
-class LikesScreen extends React.Component {
+class ItineraryScreen extends React.Component {
   static navigationOptions = {
-    title: 'Likes',
+    title: 'Itinerary',
   };
 
   render() {
@@ -15,7 +16,7 @@ class LikesScreen extends React.Component {
       <ScrollView style={styles.container}>
         {
           this.props.favorites[0] &&
-          this.props.favorites.map((favorite) => { return <DestinationCard destination={favorite}/>; })
+          this.props.favorites.map((favorite) => { return <SettingsButton value={favorite.name}/>; })
         }
       </ScrollView>
     );
@@ -38,4 +39,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   undefined,
-)(LikesScreen);
+)(ItineraryScreen);

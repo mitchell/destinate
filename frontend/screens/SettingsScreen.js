@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+
+import SettingsButton from '../components/SettingsButton/SettingsButton';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
@@ -7,8 +9,15 @@ export default class SettingsScreen extends React.Component {
   };
 
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
-    return <View><Text></Text></View>;
+    return (
+      <View>
+        <SettingsButton value='Location'/> 
+        <SettingsButton value='Radius'/> 
+        <SettingsButton value='Likes'/> 
+        <SettingsButton value='Dislikes'/> 
+        <SettingsButton value='Account'/> 
+        <SettingsButton value='Logout'/> 
+      </View>
+    );
   }
 }

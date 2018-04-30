@@ -11,7 +11,7 @@ const destinationsMiddleware = store => next => action => {
   case GET_DESTINATIONS:
     request.get(path)
       .then((res) => {
-        next(getDestinationsSuccess(res.body));
+        next(getDestinationsSuccess(res.body.Results));
       });
     break;
 
