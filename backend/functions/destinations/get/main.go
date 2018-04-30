@@ -1,23 +1,34 @@
 package main
 
 import (
+	"context"
+	"encoding/json"
+
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
+	"github.com/mitchelljfs/destinate/backend/schema"
 )
 
-func handler(r events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	// response, err := d.Find(r.PathParameters["id"])
-	// if err != nil {
-	// 	return events.APIGatewayProxyResponse{
-	// 		Body:       err.Error(),
-	// 		StatusCode: 400,
-	// 	}, nil
-	// }
+func handler(ctx context.Context, r events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	var re events.APIGatewayProxyResponse
 
-	return events.APIGatewayProxyResponse{
-		Body:       "Under Construction.",
-		StatusCode: 200,
-	}, nil
+	resp, err := schema.FindDestination(ctx, r.PathParameters["id"])
+	if err != nil {
+		re.Body = err.Error()
+		re.StatusCode = 400
+		return re, nil
+	}
+
+	jsonba, err := json.Marshal(resp)
+	if err != nil {
+		re.Body = err.Error()
+		re.StatusCode = 400
+		return re, nil
+	}
+
+	re.Body = string(jsonba)
+	re.StatusCode = 200
+	return re, nil
 }
 
 func main() {

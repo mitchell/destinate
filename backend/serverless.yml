@@ -23,23 +23,32 @@ package:
 functions:
   migrate:
     handler: bin/migrate
+  auth:
+    handler: bin/auth-post
+    events:
+      - http:
+          path: auth
+          method: post
   # NOTE: desinations entity
   destinations-index:
     handler: bin/destinations-index
-    events:
-      - http:
-          path: destinations
-          method: get
-  destinations-get:
-    handler: bin/destinations-get
     events:
       - http:
           path: destinations/{id}
           method: get
           parameters:
             paths:
+              id: false
+  destinations-get:
+    handler: bin/destinations-get
+    events:
+      - http:
+          path: destination/{id}
+          method: get
+          parameters:
+            paths:
               id: true
-  # NOTE: desinations entity
+  # NOTE: users entity
   users-index:
     handler: bin/users-index
     events:
@@ -76,8 +85,8 @@ functions:
           parameters:
             paths:
               id: true
-  users-desinations-put-like:
-    handler: bin/users-destinations-put-like
+  users-destinations-put-like:
+    handler: bin/users-like-put
     events:
       - http:
           path: users/{id}/like/{did}
@@ -86,8 +95,8 @@ functions:
             paths:
               id: true
               did: true
-  users-desinations-put-dislike:
-    handler: bin/users-destinations-put-dislike
+  users-destinations-put-dislike:
+    handler: bin/users-dislike-put
     events:
       - http:
           path: users/{id}/dislike/{did}
