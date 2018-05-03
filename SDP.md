@@ -75,6 +75,8 @@ Our team will be working on everything together.
 ![gant]
 
 - 4.4.2 Task / Resource Table
+
+| Task | Name | Platform | Technology |
 |---|---|---|---|
 | Implement Destinations | Mitchell Simon & Arash Lari | Macbook/Windows PC | GO, AWS |
 | Boilerplate for frontend | Mitchell Simon & Arash Lari | Macbook/Windows PC | Ionic Framework, Angular.js  |
