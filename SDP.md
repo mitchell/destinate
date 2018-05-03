@@ -72,6 +72,7 @@ Our team will be working on everything together.
 ## 4.4   Project Schedule
 
 - 4.4.1 PERT / GANTT Chart
+
 ![gant]
 
 - 4.4.2 Task / Resource Table
