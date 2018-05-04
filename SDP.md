@@ -55,7 +55,7 @@ During our 16 week development process, our team will continuously keep in touch
 |AWS                 | ✓             | ✓         |
 |macOS                 | ✓             | ✓         |
 |Windows OS            | ✓             | ✓         |
-|GitHub                | ✓             |           ||
+|GitHub                | ✓             |           |
 
 ## 4.3   Project Organization
 
@@ -72,8 +72,7 @@ Our team will be working on everything together.
 ## 4.4   Project Schedule
 
 - 4.4.1 PERT / GANTT Chart
-
-![gant]
+![gant](./gant.png)
 
 - 4.4.2 Task / Resource Table
 

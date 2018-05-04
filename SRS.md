@@ -3,7 +3,7 @@
 This application is a multi(two)-tier application, consisting of a
 component-based native frontend application, for iOS, and a micro-service based
 serverless, FaaS (Functions as a Service), backend application. The frontend
-application will consist of a [Meteor](https://meteor.com/) native
+application will consist of a [Expo](https://expo.io/) native
 application, which is a component-based native application development
 framework. This will communicate with the AWS Lambda (a FaaS provider) backend
 applicaiton, which will use the [Serverless](https://serverless.com)
@@ -28,8 +28,8 @@ The remainder of this document is structured as follows:
   * 5.3.2.1 The app shall return activities based on the users search query, this should take no longer than 5 seconds.
 ## 5.4 Environment Requirements
 * 5.4.1 Development Environment Requirements
-  * 5.4.1.1 This Application's frontend will use javascript with the Meteor framework
-  * 5.4.1.2 This Application's backend will use the serverless framework
+  * 5.4.1.1 This Application's FrontEnd will use React Native with the Expo framework
+  * 5.4.1.2 This Application's BackEnd will use the serverless framework, AWS, Go Language, PostgreSQL
 * 5.4.2 Execution Environment Requirements
   * 5.4.2.1 This application shall run natively on iOS
   * 5.4.2.2 This application requires an internet connection
